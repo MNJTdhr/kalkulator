@@ -17,27 +17,42 @@ class MyButton extends StatelessWidget {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),
-        child: InkWell(
-          onTap: onPress,
-          child: Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(20),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: color,
+            padding: EdgeInsets.symmetric(vertical: 15),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
-            child: Center(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 20,
-                  // color: Colors.white,
-                ),
-              ),
-            ),
+          ),
+          onPressed: onPress,
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 20, color: Colors.black),
           ),
         ),
       ),
     );
   }
 }
+
+// InkWell(
+//           onTap: onPress,
+//           child: Container(
+//             height: 60,
+//             width: 60,
+//             decoration: BoxDecoration(
+//               color: color,
+//               borderRadius: BorderRadius.circular(20),
+//             ),
+//             child: Center(
+//               child: Text(
+//                 title,
+//                 style: TextStyle(
+//                   fontSize: 20,
+//                   // color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ),
