@@ -1,0 +1,1 @@
+D:\Projects\AndroidStudioProjects\kalkulator\build\app\intermediates\cxx\Debug\6d305zl1\obj\arm64-v8a

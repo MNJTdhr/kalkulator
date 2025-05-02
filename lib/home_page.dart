@@ -1,3 +1,4 @@
+// lib/home_page.dart
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'my_button.dart';
@@ -44,11 +45,7 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             children: [
               Expanded(
-                child: Container(
-                  // decoration: BoxDecoration(
-                  //   color: Color.fromARGB(255, 242, 242, 244),
-                  //   borderRadius: BorderRadius.circular(30),
-                  // ),
+                child: SizedBox(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -285,25 +282,43 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
-  
+
   void equalButton() {
+    // Replace all occurrences of 'x' with '*' to match multiplication symbol used in calculations
     String finalUserInput = userInput.replaceAll('x', '*');
 
+    // Split the input expression by '^' (used for exponentiation)
     List<String> parts = finalUserInput.split('^');
 
+    // Check if the input contains exactly two parts (meaning an exponentiation operation)
     if (parts.length == 2) {
+      // Parse base and exponent from string to double
       double base = double.parse(parts[0]);
       double exponent = double.parse(parts[1]);
+
+      // Calculate the power operation
       num eval = pow(base, exponent);
+
+      // Store the computed result as a string
       answer = eval.toString();
     } else {
-      Parser p = Parser();
+      // If no exponentiation detected, use Shunting Yard algorithm for parsing mathematical expressions
+      ShuntingYardParser p = ShuntingYardParser();
+
+      // Parse the final user input as an expression
       Expression expression = p.parse(finalUserInput);
+
+      // Create a context model for evaluation
       ContextModel contextModel = ContextModel();
+
+      // Evaluate the parsed expression numerically
       double eval = expression.evaluate(EvaluationType.REAL, contextModel);
+
+      // Store the computed result as a string
       answer = eval.toString();
     }
 
+    // Update the UI to reflect changes in state
     setState(() {});
   }
 }
